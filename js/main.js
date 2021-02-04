@@ -106,8 +106,10 @@ if ($('.platform__items').length > 0) {
 if ($('.gallery__items').length > 0) {
    $('.gallery__items').slick({
       slidesToShow: 1,
-      arrows: false,
-      adaptiveHeight: true,
+		arrows: false,
+		dots: true,
+		adaptiveHeight: true,
+		appendDots: $('.gallery__dots'),
       fade: true,
    })
 }
@@ -281,7 +283,7 @@ function calcPayback(scNumber, profit = calcProfit()) {
       const scPrice = 53000 * scNumber
       const startupCosts = 90000
 
-      payback = ((scPrice + startupCosts) / profit).toFixed()
+      payback = (Math.ceil((scPrice + startupCosts) / profit)).toFixed()
    } else {
       payback = 'нет'
    }
@@ -305,7 +307,7 @@ function changeInfo() {
 
       startInvestmentsBlock.textContent = `${startInvestments}`
       paybackBlock.textContent = `${payback}`
-      profitBlock.textContent = `${profit} ₽ / месяц`
+      profitBlock.textContent = `${Math.ceil(profit)} ₽ / месяц`
    }
 }
 changeInfo()
